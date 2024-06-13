@@ -44,9 +44,9 @@ export const Divider = () => {
 					y2="391"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#D64540" stop-opacity="0" />
-					<stop offset="0.505" stop-color="#D64540" />
-					<stop offset="1" stop-color="#D64540" stop-opacity="0" />
+					<stop stopColor="#D64540" stopOpacity="0" />
+					<stop offset="0.505" stopColor="#D64540" />
+					<stop offset="1" stopColor="#D64540" stopOpacity="0" />
 				</linearGradient>
 			</defs>
 		</svg>
