@@ -1,10 +1,15 @@
 body {
-	background-color: linear-gradient(
-		45deg,
-		#ffffff 31%,
-		#d64540 60%,
-		#e8bc4f 75%,
-		#57a870 88%,
-		#004e89 100%
-	);
+	margin: 0;
+	padding: 0;
+}
+
+.background {
+	position: absolute;
+	width: 1550px;
+	right: 0;
+	height: 495px;
+}
+
+.container {
+	padding: 60px;
 }

@@ -1,0 +1,36 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 56px 60px 40px 60px;
+}
+
+.calendarContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 12px;
+}
+
+.dateContainer {
+	display: flex;
+	flex-direction: column;
+	text-align: end;
+	row-gap: 4px;
+}
+
+.logo {
+	width: 197px;
+}
+
+.date {
+	color: #2a3342;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.time {
+	color: #2a3342;
+	font-size: 16px;
+	opacity: 0.6;
+}
