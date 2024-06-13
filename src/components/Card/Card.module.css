@@ -4,3 +4,24 @@
 	border-radius: 20px;
 	background-color: #f5f7f7;
 }
+
+.innerContainer {
+	z-index: 999;
+	background-color: #ffffff;
+	border: 1px solid hsla(218, 22%, 21%, 0.149);
+	width: 429px;
+	height: 355px;
+	margin: 0px 4px 4px 4px;
+	border-radius: 16px;
+	box-shadow: 0 -10px 20px 0 #0c0f300d;
+}
+
+.divider {
+	display: inline-block;
+	height: 2px;
+}
+
+.tableContainer {
+	display: flex;
+	flex-direction: column;
+}

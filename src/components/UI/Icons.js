@@ -18,3 +18,37 @@ export const CalendarIcon = () => {
 		</svg>
 	);
 };
+
+export const Divider = () => {
+	return (
+		<svg
+			width="389"
+			height="2"
+			viewBox="0 0 389 2"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<rect
+				y="2"
+				width="2"
+				height="389"
+				transform="rotate(-90 0 2)"
+				fill="url(#paint0_linear_1_1591)"
+			/>
+			<defs>
+				<linearGradient
+					id="paint0_linear_1_1591"
+					x1="1"
+					y1="2"
+					x2="1"
+					y2="391"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop stop-color="#D64540" stop-opacity="0" />
+					<stop offset="0.505" stop-color="#D64540" />
+					<stop offset="1" stop-color="#D64540" stop-opacity="0" />
+				</linearGradient>
+			</defs>
+		</svg>
+	);
+};
