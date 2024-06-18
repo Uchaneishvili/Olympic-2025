@@ -10,6 +10,12 @@ body {
 	height: 495px;
 }
 
+.flag {
+	width: 24px;
+	height: 24px;
+	border-radius: 4px;
+}
+
 .container {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);

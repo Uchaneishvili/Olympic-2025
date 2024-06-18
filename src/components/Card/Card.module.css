@@ -16,6 +16,18 @@
 	box-shadow: 0 -10px 20px 0 #0c0f300d;
 }
 
+.table {
+	padding: 20px 24px 0px 24px;
+	display: flex;
+	flex-direction: column;
+}
+
+.list {
+	padding-top: 4px;
+	row-gap: 8px;
+	display: flex;
+	flex-direction: column;
+}
 .divider {
 	display: inline-block;
 	height: 2px;
@@ -32,4 +44,82 @@
 	font-weight: 700;
 	font-size: 20px;
 	padding: 20px 100px;
+}
+
+.row {
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: row;
+}
+
+.playerInfo {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.ranking {
+	background-color: #7d94a533;
+	color: #7d94a5;
+	border-radius: 6px;
+	width: 60px;
+	height: 32px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	font-size: 16px;
+}
+
+.first {
+	background-color: #e8bc4f;
+	color: #ffffff;
+}
+
+.second {
+	background-color: #95999a;
+	color: #ffffff;
+}
+
+.third {
+	background-color: #db8f5a;
+	color: #ffffff;
+}
+
+.subtitleContainer {
+	text-align: center;
+}
+
+.subtitleInnerContainer {
+	display: flex;
+	align-items: center;
+}
+
+.dashedLine {
+	display: flex;
+	flex: 1;
+	height: 1px;
+	border-top: 1px dashed #7d94a5;
+	opacity: 40%;
+}
+
+.subtitle {
+	margin: 0 16px;
+	white-space: nowrap;
+	color: #7d94a5;
+	font-size: 16px;
+}
+
+.country {
+	color: #7d94a5;
+}
+
+.name {
+	color: #2a3342;
+}
+
+.result {
+	color: #2a3342;
+	font-weight: 700;
 }
