@@ -43,13 +43,23 @@ function Card() {
 		console.log("rank", player.rankChange);
 		useEffect(() => {
 			controls.start({
+				opacity: [1, 0.5, 1],
+
 				y: animate ? -40 * player.rankChange : 0,
-				transition: { duration: 2 },
+				transition: {
+					duration: 2,
+					opacity: { times: [0, 0.5, 1], duration: 2 },
+				},
 			});
 		}, [player.rankChange, controls]);
 
 		return (
-			<motion.div className={styles.row} key={index} animate={controls}>
+			<motion.div
+				className={styles.row}
+				key={index}
+				animate={controls}
+				initial={{ opacity: 1 }}
+			>
 				<div className={styles.playerInfo}>
 					<div
 						className={`${styles.ranking} ${index === 0 && styles.first} ${
@@ -97,36 +107,9 @@ function Card() {
 								const updatedIndex = updatedData.findIndex(
 									(p) => p.id === player.id
 								);
-
-								console.log("updatedIndex", updatedIndex);
 								player.rankChange = index - updatedIndex;
-								console.log(player.name, player.rankChange);
 
-								const movement =
-									player.rankChange > 0
-										? `${player.rankChange * 32}px`
-										: player.rankChange < 0
-										? `${(player.rankChange + 1) * -32}px`
-										: "";
-								return (
-									// <motion.div
-									// 	className={styles.row}
-									// 	key={index}
-									// 	initial={false}
-									// 	transition={{
-									// 		duration: 3,
-									// 		type: "tween",
-									// 	}}
-									// 	animate={{
-									// 		y: animate ? -40 * player.rankChange : 0,
-									// 	}}
-									// 	// onAnimationComplete={() => {
-									// 	// setAnimate(false);
-									// 	// }}
-									// >
-									<PlayerRow player={player} index={index} />
-									// </motion.div>
-								);
+								return <PlayerRow player={player} index={index} />;
 							})}
 						</div>
 					</div>
