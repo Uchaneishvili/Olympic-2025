@@ -1,8 +1,10 @@
+import { useState, useEffect } from "react";
 import { Divider } from "../UI/Icons";
 import styles from "./Card.module.css";
 function Card() {
-	const data = [
+	const initialData = [
 		{
+			id: 1,
 			country: "SLO",
 			flag: (
 				<img className="flag" alt="country-flag" src="flags/Slovenia.png" />
@@ -11,12 +13,14 @@ function Card() {
 			time: "31:34.07",
 		},
 		{
+			id: 2,
 			country: "POL",
 			flag: <img className="flag" alt="country-flag" src="flags/Poland.png" />,
 			name: "K. Badacz",
 			time: "31:34.12",
 		},
 		{
+			id: 3,
 			country: "SVK",
 			flag: (
 				<img className="flag" alt="country-flag" src="flags/Slovakia.png" />
@@ -25,30 +29,104 @@ function Card() {
 			time: "31:34:20",
 		},
 		{
+			id: 4,
 			country: "SWE",
 			flag: <img className="flag" alt="country-flag" src="flags/Sweden.png" />,
 			name: "S. Anderson",
 			time: "31:34.39",
 		},
 		{
+			id: 5,
 			country: "FRA",
 			flag: <img className="flag" alt="country-flag" src="flags/France.png" />,
 			name: "L. Thievent",
 			time: "31:34.59",
 		},
 		{
+			id: 6,
 			country: "ITA",
 			flag: <img className="flag" alt="country-flag" src="flags/Italy.png" />,
 			name: "E. Mondinelli",
 			time: "31:35.05",
 		},
 		{
+			id: 7,
 			country: "AUT",
 			flag: <img className="flag" alt="country-flag" src="flags/Austria.png" />,
 			name: "V. Olivier",
 			time: "31:35.10",
 		},
 	];
+
+	const updatedData = [
+		{
+			id: 4,
+			country: "SWE",
+			flag: <img className="flag" alt="country-flag" src="flags/Sweden.png" />,
+			name: "S. Anderson",
+			time: "31:34.39",
+		},
+
+		{
+			id: 2,
+			country: "POL",
+			flag: <img className="flag" alt="country-flag" src="flags/Poland.png" />,
+			name: "K. Badacz",
+			time: "31:34.12",
+		},
+		{
+			id: 3,
+			country: "SVK",
+			flag: (
+				<img className="flag" alt="country-flag" src="flags/Slovakia.png" />
+			),
+			name: "J. Borgula",
+			time: "31:34:20",
+		},
+
+		{
+			id: 1,
+			country: "SLO",
+			flag: (
+				<img className="flag" alt="country-flag" src="flags/Slovenia.png" />
+			),
+			name: "L. Repinc",
+			time: "31:34.07",
+		},
+
+		{
+			id: 7,
+			country: "AUT",
+			flag: <img className="flag" alt="country-flag" src="flags/Austria.png" />,
+			name: "V. Olivier",
+			time: "31:35.10",
+		},
+		{
+			id: 5,
+			country: "FRA",
+			flag: <img className="flag" alt="country-flag" src="flags/France.png" />,
+			name: "L. Thievent",
+			time: "31:34.59",
+		},
+		{
+			id: 6,
+			country: "ITA",
+			flag: <img className="flag" alt="country-flag" src="flags/Italy.png" />,
+			name: "E. Mondinelli",
+			time: "31:35.05",
+		},
+	];
+
+	const [data, setData] = useState(initialData);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setData(updatedData);
+		}, 5000);
+
+		return () => clearInterval(interval);
+	}, []);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.title}>ALPINE SKIING</div>
