@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Divider } from "../UI/Icons";
+import { Divider, DownRanking, UpRanking } from "../UI/Icons";
 import styles from "./Card.module.css";
 function Card() {
 	const initialData = [
@@ -118,6 +118,7 @@ function Card() {
 	];
 
 	const [data, setData] = useState(initialData);
+	const [showIcon, setShowIcon] = useState(false);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -145,6 +146,10 @@ function Card() {
 						</div>
 						<div className={styles.list}>
 							{data.map((player, index) => {
+								const updatedIndex = updatedData.findIndex(
+									(p) => p.id === player.id
+								);
+								player.rankChange = index - updatedIndex;
 								return (
 									<div className={styles.row} key={index}>
 										<div className={styles.playerInfo}>
@@ -160,6 +165,10 @@ function Card() {
 											</div>
 											<div className={styles.country}>({player.country})</div>
 											<div className={styles.name}>{player.name}</div>
+											<div className={styles.name}>
+												{player.rankChange > 0 && <UpRanking />}
+												{player.rankChange < 0 && <DownRanking />}
+											</div>
 										</div>
 										<div className={styles.result}>{player.time}</div>
 									</div>

@@ -19,6 +19,48 @@ export const CalendarIcon = () => {
 	);
 };
 
+export const DownRanking = () => {
+	return (
+		<svg
+			width="14"
+			height="8"
+			viewBox="0 0 14 8"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				d="M12.28 1.96667L7.9333 6.31333C7.41997 6.82667 6.57997 6.82667 6.06664 6.31333L1.71997 1.96667"
+				stroke="#D64540"
+				strokeWidth="2"
+				strokeMiterlimit="10"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
+		</svg>
+	);
+};
+
+export const UpRanking = () => {
+	return (
+		<svg
+			width="14"
+			height="8"
+			viewBox="0 0 14 8"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				d="M12.28 6.03333L7.9333 1.68667C7.41997 1.17333 6.57997 1.17333 6.06664 1.68667L1.71997 6.03333"
+				stroke="#57A870"
+				strokeWidth="2"
+				strokeMiterlimit="10"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
+		</svg>
+	);
+};
+
 export const Divider = () => {
 	return (
 		<svg
