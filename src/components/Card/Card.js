@@ -1,133 +1,81 @@
 import { useState, useEffect } from "react";
 import { Divider, DownRanking, UpRanking } from "../UI/Icons";
 import styles from "./Card.module.css";
+import { motion, useAnimation } from "framer-motion";
+import axios from "axios";
+
 function Card() {
-	const initialData = [
-		{
-			id: 1,
-			country: "SLO",
-			flag: (
-				<img className="flag" alt="country-flag" src="flags/Slovenia.png" />
-			),
-			name: "L. Repinc",
-			time: "31:34.07",
-		},
-		{
-			id: 2,
-			country: "POL",
-			flag: <img className="flag" alt="country-flag" src="flags/Poland.png" />,
-			name: "K. Badacz",
-			time: "31:34.12",
-		},
-		{
-			id: 3,
-			country: "SVK",
-			flag: (
-				<img className="flag" alt="country-flag" src="flags/Slovakia.png" />
-			),
-			name: "J. Borgula",
-			time: "31:34:20",
-		},
-		{
-			id: 4,
-			country: "SWE",
-			flag: <img className="flag" alt="country-flag" src="flags/Sweden.png" />,
-			name: "S. Anderson",
-			time: "31:34.39",
-		},
-		{
-			id: 5,
-			country: "FRA",
-			flag: <img className="flag" alt="country-flag" src="flags/France.png" />,
-			name: "L. Thievent",
-			time: "31:34.59",
-		},
-		{
-			id: 6,
-			country: "ITA",
-			flag: <img className="flag" alt="country-flag" src="flags/Italy.png" />,
-			name: "E. Mondinelli",
-			time: "31:35.05",
-		},
-		{
-			id: 7,
-			country: "AUT",
-			flag: <img className="flag" alt="country-flag" src="flags/Austria.png" />,
-			name: "V. Olivier",
-			time: "31:35.10",
-		},
-	];
+	const [data, setData] = useState([]);
+	const [updatedData, setUpdatedData] = useState([]);
+	const [animate, setAnimate] = useState(false);
 
-	const updatedData = [
-		{
-			id: 4,
-			country: "SWE",
-			flag: <img className="flag" alt="country-flag" src="flags/Sweden.png" />,
-			name: "S. Anderson",
-			time: "31:34.39",
-		},
+	const loadData = async () => {
+		const response = await axios.get(
+			`${process.env.REACT_APP_API_URL}/players`
+		);
 
-		{
-			id: 2,
-			country: "POL",
-			flag: <img className="flag" alt="country-flag" src="flags/Poland.png" />,
-			name: "K. Badacz",
-			time: "31:34.12",
-		},
-		{
-			id: 3,
-			country: "SVK",
-			flag: (
-				<img className="flag" alt="country-flag" src="flags/Slovakia.png" />
-			),
-			name: "J. Borgula",
-			time: "31:34:20",
-		},
+		if (response.status === 200) {
+			setData(response.data);
+		}
+	};
 
-		{
-			id: 1,
-			country: "SLO",
-			flag: (
-				<img className="flag" alt="country-flag" src="flags/Slovenia.png" />
-			),
-			name: "L. Repinc",
-			time: "31:34.07",
-		},
+	const loadUpdatedData = async () => {
+		const response = await axios.get(
+			`${process.env.REACT_APP_API_URL}/updatedPlayers`
+		);
 
-		{
-			id: 7,
-			country: "AUT",
-			flag: <img className="flag" alt="country-flag" src="flags/Austria.png" />,
-			name: "V. Olivier",
-			time: "31:35.10",
-		},
-		{
-			id: 5,
-			country: "FRA",
-			flag: <img className="flag" alt="country-flag" src="flags/France.png" />,
-			name: "L. Thievent",
-			time: "31:34.59",
-		},
-		{
-			id: 6,
-			country: "ITA",
-			flag: <img className="flag" alt="country-flag" src="flags/Italy.png" />,
-			name: "E. Mondinelli",
-			time: "31:35.05",
-		},
-	];
-
-	const [data, setData] = useState(initialData);
-	const [showIcon, setShowIcon] = useState(false);
-
+		if (response.status === 200) {
+			setInterval(() => {
+				setData(response.data);
+			}, 5000);
+			setUpdatedData(response.data);
+		}
+	};
 	useEffect(() => {
-		const interval = setInterval(() => {
-			setData(updatedData);
-		}, 5000);
-
-		return () => clearInterval(interval);
+		loadUpdatedData().then(() => {
+			setAnimate(true);
+		});
+		loadData();
 	}, []);
 
+	const PlayerRow = ({ player, index }) => {
+		const controls = useAnimation();
+		console.log("rank", player.rankChange);
+		useEffect(() => {
+			controls.start({
+				y: animate ? -40 * player.rankChange : 0,
+				transition: { duration: 2 },
+			});
+		}, [player.rankChange, controls]);
+
+		return (
+			<motion.div className={styles.row} key={index} animate={controls}>
+				<div className={styles.playerInfo}>
+					<div
+						className={`${styles.ranking} ${index === 0 && styles.first} ${
+							index === 1 && styles.second
+						} ${index === 2 && styles.third}`}
+					>
+						<div className={styles.index}>{index + 1}.</div>
+						<div className={styles.flag}>
+							<img
+								className="flag"
+								alt="country-flag"
+								src={`flags/${player.flag}.png`}
+							/>
+						</div>
+					</div>
+					<div className={styles.country}>({player.country})</div>
+					<div className={styles.name}>{player.name}</div>
+					<div className={styles.name}>
+						{player.rankChange > 0 && <UpRanking />}
+						{player.rankChange < 0 && <DownRanking />}
+					</div>
+				</div>
+				<div className={styles.result}>{player.time}</div>
+			</motion.div>
+		);
+	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.title}>ALPINE SKIING</div>
@@ -149,29 +97,35 @@ function Card() {
 								const updatedIndex = updatedData.findIndex(
 									(p) => p.id === player.id
 								);
+
+								console.log("updatedIndex", updatedIndex);
 								player.rankChange = index - updatedIndex;
+								console.log(player.name, player.rankChange);
+
+								const movement =
+									player.rankChange > 0
+										? `${player.rankChange * 32}px`
+										: player.rankChange < 0
+										? `${(player.rankChange + 1) * -32}px`
+										: "";
 								return (
-									<div className={styles.row} key={index}>
-										<div className={styles.playerInfo}>
-											<div
-												className={`${styles.ranking} ${
-													index === 0 && styles.first
-												} ${index === 1 && styles.second} ${
-													index === 2 && styles.third
-												}`}
-											>
-												<div className={styles.index}>{index + 1}.</div>
-												<div className={styles.flag}>{player.flag}</div>
-											</div>
-											<div className={styles.country}>({player.country})</div>
-											<div className={styles.name}>{player.name}</div>
-											<div className={styles.name}>
-												{player.rankChange > 0 && <UpRanking />}
-												{player.rankChange < 0 && <DownRanking />}
-											</div>
-										</div>
-										<div className={styles.result}>{player.time}</div>
-									</div>
+									// <motion.div
+									// 	className={styles.row}
+									// 	key={index}
+									// 	initial={false}
+									// 	transition={{
+									// 		duration: 3,
+									// 		type: "tween",
+									// 	}}
+									// 	animate={{
+									// 		y: animate ? -40 * player.rankChange : 0,
+									// 	}}
+									// 	// onAnimationComplete={() => {
+									// 	// setAnimate(false);
+									// 	// }}
+									// >
+									<PlayerRow player={player} index={index} />
+									// </motion.div>
 								);
 							})}
 						</div>
