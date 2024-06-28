@@ -27,7 +27,7 @@ function Card() {
 		if (response.status === 200) {
 			setInterval(() => {
 				setData(response.data);
-			}, 5000);
+			}, 3000);
 			setUpdatedData(response.data);
 		}
 	};
@@ -37,6 +37,35 @@ function Card() {
 		});
 		loadData();
 	}, []);
+
+	// useEffect(() => {
+	// 	const socket = io(process.env.REACT_APP_WEBSOCKET_URL);
+
+	// 	socket.on("connect", () => {
+	// 		console.log("Connected to WebSocket server");
+
+	// 		// Request initial data
+	// 		socket.emit("getInitialData");
+	// 	});
+
+	// 	socket.on("initialData", (initialData) => {
+	// 		setData(initialData);
+	// 		setAnimate(true);
+	// 	});
+
+	// 	socket.on("updatedData", (newData) => {
+	// 		setData(newData);
+	// 		setUpdatedData(newData);
+	// 	});
+
+	// 	socket.on("disconnect", () => {
+	// 		console.log("Disconnected from WebSocket server");
+	// 	});
+
+	// 	return () => {
+	// 		socket.disconnect();
+	// 	};
+	// }, []);
 
 	const PlayerRow = ({ player, index }) => {
 		const controls = useAnimation();
