@@ -171,7 +171,6 @@ function Card() {
 			<motion.div
 				style={{
 					...commonStyles,
-					transformStyle: "preserve-3d",
 				}}
 				initial={{ rotateY: 180 }}
 				animate={{ rotateY: isFlipped ? 0 : 180 }}
