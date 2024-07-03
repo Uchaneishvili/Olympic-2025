@@ -80,7 +80,6 @@ function Card() {
 
 	const PlayerRow = ({ player, index }) => {
 		const controls = useAnimation();
-		console.log("rank", player.rankChange);
 		useEffect(() => {
 			controls.start({
 				opacity: [1, 0.5, 1],
