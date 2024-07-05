@@ -74,7 +74,6 @@ function Card() {
 		alignItems: "center",
 		justifyContent: "center",
 		flexDirection: "column",
-
 		backfaceVisibility: "hidden",
 	};
 
@@ -83,7 +82,6 @@ function Card() {
 		useEffect(() => {
 			controls.start({
 				opacity: [1, 0.5, 1],
-
 				y: animate ? -40 * player.rankChange : 0,
 				transition: {
 					duration: 2,
